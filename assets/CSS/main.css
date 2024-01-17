@@ -80,3 +80,8 @@ main {
     background-color: rgba(13, 95, 172, 1);
     color: white;
 }
+
+.red {
+    background-color: red;
+    color: white;
+}

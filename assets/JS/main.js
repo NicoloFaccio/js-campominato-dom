@@ -1,21 +1,39 @@
 const gridHtml = document.getElementById("game")
 const btnGame = document.getElementById("button")
+let pcBombs = Math.floor(Math.random() * 100) + 1;
+
 const arrayBombs = []
+
+if (!arrayBombs.includes(pcBombs)) {
+
+    for (let y = 1; y <= 16; y++){
+        arrayBombs.push(pcBombs)
+    }
+
+    console.log(arrayBombs)
+}
+
 
 btnGame.addEventListener("click", function(){
     gridHtml.classList.add("gridDisplay")
 
-    for (let i = 1; i <= 100; i++){
+    for (let x = 1; x <= 100; x++){
         let cell = document.createElement("div")
     
         cell.classList.add("cell")
     
-        cell.innerHTML= (`<span>${i}</span>`)
+        cell.innerHTML= (`<span>${x}</span>`)
 
         cell.addEventListener("click", function(){
-            this.classList.toggle("blue")
 
-            console.log(`Il numero uscito è: ${i}`)
+            if ( x == pcBombs){
+                this.classList.toggle("red")
+                alert("HAI PERSO")
+            } else {
+                this.classList.toggle("blue")
+            }
+
+            console.log(`Il numero uscito è: ${x}`)            
         })
     
         gridHtml.append(cell)
@@ -23,20 +41,5 @@ btnGame.addEventListener("click", function(){
     return
 })
 
-do {
 
-    let pcBombs = rundomNumber(64)
-
-    if (!arrayBombs.includes(pcBombs)) {
-
-        arrayBombs.push(pcBombs)
-    }
-} while (arrayBombs.length !== 64)
-
-console.log(arrayBombs)
-
-
-function rundomNumber(max) {
-    return Math.floor(Math.random() * max) + 1
-}
 
