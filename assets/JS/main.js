@@ -1,5 +1,6 @@
 const gridHtml = document.getElementById("game")
 const btnGame = document.getElementById("button")
+const arrayBombs = []
 
 btnGame.addEventListener("click", function(){
     gridHtml.classList.add("gridDisplay")
@@ -21,3 +22,21 @@ btnGame.addEventListener("click", function(){
     }
     return
 })
+
+do {
+
+    let pcBombs = rundomNumber(64)
+
+    if (!arrayBombs.includes(pcBombs)) {
+
+        arrayBombs.push(pcBombs)
+    }
+} while (arrayBombs.length !== 64)
+
+console.log(arrayBombs)
+
+
+function rundomNumber(max) {
+    return Math.floor(Math.random() * max) + 1
+}
+
