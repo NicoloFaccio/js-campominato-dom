@@ -26,7 +26,7 @@ btnGame.addEventListener("click", function(){
 
         cell.addEventListener("click", function(){
 
-            if ( x == pcBombs){
+            if (x == pcBombs){
                 this.classList.toggle("red")
                 alert("HAI PERSO")
             } else {
