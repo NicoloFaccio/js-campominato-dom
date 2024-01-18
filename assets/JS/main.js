@@ -1,20 +1,23 @@
 const gridHtml = document.getElementById("game")
 const btnGame = document.getElementById("button")
-let pcBombs = Math.floor(Math.random() * 100) + 1;
-
-const arrayBombs = []
-
-if (!arrayBombs.includes(pcBombs)) {
-
-    for (let y = 1; y <= 16; y++){
-        arrayBombs.push(pcBombs)
-    }
-
-    console.log(arrayBombs)
-}
-
+const scoreHtml = document.getElementById("score")
 
 btnGame.addEventListener("click", function(){
+    let arrayBombs = []
+
+    let punteggio = 0; 
+
+    do {
+        let numberRan = randomNum(100)
+
+        if (!arrayBombs.includes(numberRan)) {
+            arrayBombs.push(numberRan)
+        }
+
+    } while(arrayBombs.length < 16)
+
+    console.log(arrayBombs)
+    
     gridHtml.classList.add("gridDisplay")
 
     for (let x = 1; x <= 100; x++){
@@ -26,11 +29,14 @@ btnGame.addEventListener("click", function(){
 
         cell.addEventListener("click", function(){
 
-            if (x == pcBombs){
-                this.classList.toggle("red")
+            if (arrayBombs.includes(x)){
+                this.classList.add("red")
                 alert("HAI PERSO")
             } else {
-                this.classList.toggle("blue")
+                this.classList.add("blue")
+                punteggio++
+                scoreHtml.innerHTML = `<h2>Il punteggio è: ${punteggio}</h2>`
+                this.style.setProperty("pointer-events", "none")
             }
 
             console.log(`Il numero uscito è: ${x}`)            
@@ -38,8 +44,13 @@ btnGame.addEventListener("click", function(){
     
         gridHtml.append(cell)
     }
-    return
+    return 
 })
+
+
+function randomNum(max){
+    return Math.floor( Math.random()*max) + 1; 
+}
 
 
 
